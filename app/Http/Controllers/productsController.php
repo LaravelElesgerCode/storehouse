@@ -69,7 +69,8 @@ class productsController extends Controller
       $psay = products::where('user_id','=',Auth::id())->count();
 
        return view('products', [
-        'pdata'=>products::where('products.user_id','=',Auth::id())->join('brands','brands.id','=','products.brand_id')
+        'pdata'=>products::where('products.user_id','=',Auth::id())
+        ->join('brands','brands.id','=','products.brand_id')
         ->select('products.id','products.user_id','products.product','products.purchase','products.sale','products.amount','products.created_at','products.image','brands.brand')
         ->orderBy('products.id','desc')
         ->get(),
